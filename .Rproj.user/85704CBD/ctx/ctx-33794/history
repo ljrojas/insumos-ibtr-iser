@@ -1,0 +1,512 @@
+# - chileatiende
+if (str_detect(text_info,'chileatiende')) chileatiende <- text_info
+# TODO: if check guarda info
+}
+# boton mapa
+btn_gm <- panel[[p]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+b<-1
+# para cada candidato a boton de mapa
+for (b in seq_len(length(btn_gm))) {
+# btn_gm[[1]]$highlightElement()
+# rescatar texto
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+# saltar texto vacio
+if (text_btn=="") next
+# mostrar texto boton
+cat(text_btn,"\n")
+# buscar info preliminar iframe
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+length(data_iframe)
+# data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+# click boton iframe (abre mapa)
+btn_gm[[b]]$clickElement()
+# seleccionar iframe
+iframe <- panel[[p]]$findChildElements("tag","iframe")[[1]]
+remDr$switchToFrame(iframe)
+Sys.sleep(2)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+href <- ll[[1]]$getElementAttribute('href')
+if (text_btn == "Ver mapa") break
+cat('fin ciclo boton')
+} # fin ciclo boton
+# guardar info -----
+resultado[pos,] <-
+c(
+text_opt_reg,
+nom_comuna,
+mod_comuna,
+direccion,
+data_iframe,
+href,
+horario,
+chileatiende
+)
+# actualizar comunas completas y pos ------
+pos <- pos + 1
+comunas_completadas <- c(comunas_completadas, nom_comuna)
+# volver a frame original
+# remDr$switchToFrame(NULL)
+# OPCIONES
+# checkear elementos usados no esten en acumulador
+# reinciar (actualizar)
+remDr$navigate(url_isp)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+opt_region <- sel_region$findChildElements("tag","option")
+# click region
+# cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+if (j == num_comunas) cat('fin ciclo comuna\n-----------\n'); next
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+cat('fin ciclo comuna\n-----------\n')
+} # fin ciclo comuna
+cat('fin ciclo region\n************\n')
+}
+j
+i
+pos
+p
+text_btn
+b
+# buscar info preliminar iframe
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+# boton mapa
+btn_gm <- panel[[p]]$findChildElements("class","alternar-respuesta")
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+j
+opt_comunas
+length(opt_comuna)
+length(opt_comunas)
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+opt_comunas
+opt_comunas[[j]]$getElementText()[[1]]
+remDr$navigate(url_isp)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+opt_region <- sel_region$findChildElements("tag","option")
+# click region
+# cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+opt_comunas
+cat('j:',j,'\n')
+cat('num comunas:',num_comunas,'\n')
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) next
+# nombre y modificador comuna
+mod_comuna <-
+str_extract(text_comuna,'(?<=- ).+')
+if (is.na(mod_comuna)) mod_comuna <- 'sin modificador'
+nom_comuna <- text_comuna
+if (str_detect(text_comuna,' - ')) nom_comuna <- str_extract(text_comuna, '.+(?= -)')
+# salterse comuna completa
+if (nom_comuna %in% comunas_completadas) next
+# programa avisa en que comuna va
+cat(text_comuna,'\n')
+# visistar url busqueda
+remDr$navigate(url_isp)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+sel_region$highlightElement()
+sel_comuna$highlightElement()
+buscar$highlightElement()
+resultado <-
+data.frame(
+region = as.character(),
+comuna = as.character(),
+mod_comuna = as.character(),
+direccion = as.character(),
+iframe_info = as.character(),
+latlot = as.character(),
+horario = as.character(),
+chileatiende = as.character()
+)
+pos <- 1
+# acumulador
+comunas_completadas <- c()
+# click selector region
+sel_region$clickElement()
+# rescatar opciones
+opt_region <- sel_region$findChildElements("tag","option")
+length(opt_region)
+# i<- 7
+# iterar en cada region
+for (i in seq_len(length(opt_region))) {
+cat('i:',i,'\n')
+# click selector region
+sel_region$clickElement()
+# rescata opciones
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# descartar texto "seleccione"
+if (str_detect(text_opt_reg,'seleccione')) {
+cat('Boton sin region\n')
+next
+}
+# click region
+cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+# j<-2
+# comunas -----------------------------------------------------------------
+num_comunas <- length(opt_comunas)
+for (j in seq_len(length(opt_comunas))) {
+cat('j:',j,'\n')
+cat('num comunas:',num_comunas,'\n')
+# elementos <- rescatar_elementos()
+# sel_region <- elementos[[1]]
+# sel_comuna <- elementos[[2]]
+# buscar <- elementos[[3]]
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) next
+# nombre y modificador comuna
+mod_comuna <-
+str_extract(text_comuna,'(?<=- ).+')
+if (is.na(mod_comuna)) mod_comuna <- 'sin modificador'
+nom_comuna <- text_comuna
+if (str_detect(text_comuna,' - ')) nom_comuna <- str_extract(text_comuna, '.+(?= -)')
+# salterse comuna completa
+if (nom_comuna %in% comunas_completadas) next
+# programa avisa en que comuna va
+cat(text_comuna,'\n')
+# busqueda ----------------------------------------------------------------
+# click comuna
+opt_comunas[[j]]$clickElement()
+# click buscar
+cat('click buscar\n')
+buscar$clickElement()
+# panel donde esta la informacion
+panel <- remDr$findElements("xpath","//div[contains(@class,'panel-body')]")
+length(panel) # en general son 16 (16 regiones)
+p <- i - 1
+# al filtrar por selectores deberia el primero ser operativo
+panel[[p]]$highlightElement()
+# direccion
+info_gral <- panel[[p]]$findChildElements("class","minirecuadro")
+length(info_gral)
+# info varia
+for (x in seq_len(length(info_gral))) {
+text_info_gral <- info_gral[[x]]$getElementText()[[1]] %>% str_trim()
+if (text_info_gral=="") next
+text_info <- limpiar_texto(text_info_gral)
+cat(text_info,"\n")
+# checkear:
+# - direccion
+if (str_detect(text_info,'direccion')) direccion <- text_info
+# - horario
+if (str_detect(text_info,'horario')) horario <- text_info
+# - chileatiende
+if (str_detect(text_info,'chileatiende')) chileatiende <- text_info
+# TODO: if check guarda info
+}
+# boton mapa
+btn_gm <- panel[[p]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+b<-1
+# para cada candidato a boton de mapa
+for (b in seq_len(length(btn_gm))) {
+# btn_gm[[1]]$highlightElement()
+# rescatar texto
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+# saltar texto vacio
+if (text_btn=="") next
+# mostrar texto boton
+cat(text_btn,"\n")
+# buscar info preliminar iframe
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+length(data_iframe)
+# data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+# click boton iframe (abre mapa)
+btn_gm[[b]]$clickElement()
+# seleccionar iframe
+iframe <- panel[[p]]$findChildElements("tag","iframe")[[1]]
+remDr$switchToFrame(iframe)
+Sys.sleep(2)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+href <- ll[[1]]$getElementAttribute('href')
+if (text_btn == "Ver mapa") break
+cat('fin ciclo boton')
+} # fin ciclo boton
+# guardar info -----
+resultado[pos,] <-
+c(
+text_opt_reg,
+nom_comuna,
+mod_comuna,
+direccion,
+data_iframe,
+href,
+horario,
+chileatiende
+)
+# actualizar comunas completas y pos ------
+pos <- pos + 1
+comunas_completadas <- c(comunas_completadas, nom_comuna)
+# volver a frame original
+# remDr$switchToFrame(NULL)
+# OPCIONES
+# checkear elementos usados no esten en acumulador
+# reinciar (actualizar)
+cat('recarga pagina\n')
+remDr$navigate(url_isp)
+Sys.sleep(1)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+opt_region <- sel_region$findChildElements("tag","option")
+# click region
+# cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+if (j == num_comunas) cat('fin ciclo comuna\n-----------\n'); next
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+cat('fin ciclo comuna\n-----------\n')
+} # fin ciclo comuna
+cat('fin ciclo region\n************\n')
+}
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+text_opt_reg
+opt_comunas
+length(opt_comunas)
+# visistar url busqueda
+remDr$navigate(url_isp)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+sel_region$highlightElement()
+sel_comuna$highlightElement()
+buscar$highlightElement()
+pos <- 1
+# click selector region
+sel_region$clickElement()
+length(opt_region)
+resultado <-
+data.frame(
+region = as.character(),
+comuna = as.character(),
+mod_comuna = as.character(),
+direccion = as.character(),
+iframe_info = as.character(),
+latlot = as.character(),
+horario = as.character(),
+chileatiende = as.character()
+)
+# acumulador
+comunas_completadas <- c()
+# rescatar opciones
+opt_region <- sel_region$findChildElements("tag","option")
+# i<- 7
+# iterar en cada region
+for (i in seq_len(length(opt_region))) {
+cat('i:',i,'\n')
+# click selector region
+sel_region$clickElement()
+# rescata opciones
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# descartar texto "seleccione"
+if (str_detect(text_opt_reg,'seleccione')) {
+cat('Boton sin region\n')
+next
+}
+# click region
+cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+# j<-2
+# comunas -----------------------------------------------------------------
+num_comunas <- length(opt_comunas)
+for (j in seq_len(length(opt_comunas))) {
+cat('j:',j,'\n')
+cat('num comunas:',num_comunas,'\n')
+# elementos <- rescatar_elementos()
+# sel_region <- elementos[[1]]
+# sel_comuna <- elementos[[2]]
+# buscar <- elementos[[3]]
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) next
+# nombre y modificador comuna
+mod_comuna <-
+str_extract(text_comuna,'(?<=- ).+')
+if (is.na(mod_comuna)) mod_comuna <- 'sin modificador'
+nom_comuna <- text_comuna
+if (str_detect(text_comuna,' - ')) nom_comuna <- str_extract(text_comuna, '.+(?= -)')
+# salterse comuna completa
+if (nom_comuna %in% comunas_completadas) next
+# programa avisa en que comuna va
+cat(text_comuna,'\n')
+# busqueda ----------------------------------------------------------------
+# click comuna
+opt_comunas[[j]]$clickElement()
+# click buscar
+cat('click buscar\n')
+buscar$clickElement()
+# panel donde esta la informacion
+panel <- remDr$findElements("xpath","//div[contains(@class,'panel-body')]")
+length(panel) # en general son 16 (16 regiones)
+p <- i - 1
+# al filtrar por selectores deberia el primero ser operativo
+panel[[p]]$highlightElement()
+# direccion
+info_gral <- panel[[p]]$findChildElements("class","minirecuadro")
+length(info_gral)
+# info varia
+for (x in seq_len(length(info_gral))) {
+text_info_gral <- info_gral[[x]]$getElementText()[[1]] %>% str_trim()
+if (text_info_gral=="") next
+text_info <- limpiar_texto(text_info_gral)
+cat(text_info,"\n")
+# checkear:
+# - direccion
+if (str_detect(text_info,'direccion')) direccion <- text_info
+# - horario
+if (str_detect(text_info,'horario')) horario <- text_info
+# - chileatiende
+if (str_detect(text_info,'chileatiende')) chileatiende <- text_info
+# TODO: if check guarda info
+}
+# boton mapa
+btn_gm <- panel[[p]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+b<-1
+# para cada candidato a boton de mapa
+for (b in seq_len(length(btn_gm))) {
+# btn_gm[[1]]$highlightElement()
+# rescatar texto
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+# saltar texto vacio
+if (text_btn=="") next
+# mostrar texto boton
+cat(text_btn,"\n")
+# buscar info preliminar iframe
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+length(data_iframe)
+# data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+# click boton iframe (abre mapa)
+btn_gm[[b]]$clickElement()
+# seleccionar iframe
+iframe <- panel[[p]]$findChildElements("tag","iframe")[[1]]
+remDr$switchToFrame(iframe)
+Sys.sleep(2)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+href <- ll[[1]]$getElementAttribute('href')
+if (text_btn == "Ver mapa") break
+cat('fin ciclo boton')
+} # fin ciclo boton
+# guardar info -----
+resultado[pos,] <-
+c(
+text_opt_reg,
+nom_comuna,
+mod_comuna,
+direccion,
+data_iframe,
+href,
+horario,
+chileatiende
+)
+# actualizar comunas completas y pos ------
+pos <- pos + 1
+comunas_completadas <- c(comunas_completadas, nom_comuna)
+# volver a frame original
+# remDr$switchToFrame(NULL)
+# OPCIONES
+# checkear elementos usados no esten en acumulador
+# reinciar (actualizar)
+cat('recarga pagina\n')
+remDr$navigate(url_isp)
+Sys.sleep(1)
+elementos <- rescatar_elementos()
+sel_region <- elementos[[1]]
+sel_comuna <- elementos[[2]]
+buscar <- elementos[[3]]
+opt_region <- sel_region$findChildElements("tag","option")
+# click region
+# cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+if (j == num_comunas) next
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+cat('fin ciclo comuna\n-----------\n')
+} # fin ciclo comuna
+cat('fin ciclo region\n************\n')
+}
+elementos <- rescatar_elementos()
+source('~/projects/insumos-ibtr-iser/isp-scrapping.R', encoding = 'UTF-8')
+# cerrar selenium
+remDr$close()

@@ -1,0 +1,512 @@
+str_replace_all(" ","")
+data %>%
+pull(href)
+data %>%
+pull(href) %>%
+str_extract("-?[1-9]{2]\\.?[0-9]+ ?, ?[1-9]{2}\\.?[1-9]+")
+data %>%
+pull(href) %>%
+str_extract("-?[1-9]{2]\\.?[0-9]+ ?, ?-?[1-9]{2}\\.?[1-9]+")
+data %>%
+pull(href) %>%
+str_extract("-?[1-9]{2}\\.?[0-9]+ ?, ?-?[1-9]{2}\\.?[1-9]+")
+data %>%
+pull(href) %>%
+str_replace_all(" ","") %>%
+str_extract("-?\\d{2}\\.?\\d+,-?\\d{2}\\.?\\d+")
+data %>%
+pull(href) %>%
+str_replace_all(" ","") %>%
+str_extract("-\\d{2}\\.?\\d+,-?\\d{2}\\.?\\d+")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","")
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+str_replace_all(".+\\w+,","") %>%
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d$")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","")
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+str_replace_all(".+\\w+,","") %>%
+str_extract("-\\d{2}\\.?\\d{4.},-\\d{2}\\.?\\d{4,}$")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","")
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d)(?!\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d)(?!\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+# str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+# str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d)(?!\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+# str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+# str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d)(?!\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+# str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+# str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d{2})(?!\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>%
+str_replace("^-\\d{2},","") %>%
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>%
+str_replace_all(" ","") %>%
+# str_extract("-\\d{2}\\.?\\d+,-\\d{2}\\.?\\d+$") %>%
+# str_replace_all(".+\\w+,","") %>%
+str_replace("(?<=-\\d{2})(?!\\.|%)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2})(?!\\.|%)","\\.")  # añade punto a numero sin punto
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2})(?!\\.|%)","\\.") %>%   # añade punto a numero sin punto
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2}\\.\\d{4,}$") # forma final
+data %>% slice(447)
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2,3})(?!\\.|%)","\\.") %>%   # añade punto a numero sin punto
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2}\\.\\d{4,}$") # forma final
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2,3})(?!\\.|%)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.")
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2}\\.\\d{4,}$") # forma final
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+data %>% slice(3)
+data %>% slice(3) %>% pull(href)
+data %>%
+pull(href) %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+dim(data)
+require("osmdate")
+data %>%
+mutate(latlong = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+)
+data %>%
+mutate(latlong = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric))
+data %>%
+mutate(latlong = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric))
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric))
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric)) %>%
+select(lat,lon)
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric)) %>%
+st_as_sf(coords('lon','lat',crs=4326))
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric)) %>%
+st_as_sf(coords=c('lon','lat',crs=4326))
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+mutate(across(c('lat','lon'),as.numeric)) %>%
+st_as_sf(coords=c('lon','lat'),crs=4326)
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+st_as_sf(
+coords = c('lon','lat'),
+crs = 4326,
+na.fail = FALSE,
+agr = "identity")
+geo_data <-
+data %>%
+mutate(latlon = href %>%
+str_extract("-\\d{2}\\.?.*,.*") %>% # rescate inicial
+str_replace("^-\\d{2},","") %>% # corrige numero inicial antes de coordenadas
+str_replace_all("(?<=\\d)%2C(?=\\d)","\\.") %>% # url a punto
+str_replace_all(" ","") %>% # elimina espacios
+str_replace("(?<=\\d)-(?=\\d)","") %>%  # elimina menos rodeado de numeros
+str_replace("(?<=-\\d{2})(?!\\.|%|\\d\\.)","\\.") %>%   # añade punto a numero sin punto (asume que punto deberia ir des pues de dos numeros... evitando que haya un numero seguido de punto ojo isla de pascula)
+str_extract("-\\d{2}\\.\\d{4,},-\\d{2,3}\\.\\d{4,}$") # forma final
+) %>%
+separate(latlon,c("lat","lon"), ",") %>%
+st_as_sf(
+coords = c('lon','lat'),
+crs = 4326,
+na.fail = FALSE,
+agr = "identity")
+geo_data %>% ggplot() + geom_sf()
+dir()
+dir('data')
+dir('data(shp')
+dir('data/shp')
+st_write(geo_data, 'data/shp/reg-civil_geo.shp', delete_layer = TRUE)
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+library(stringr)
+library(stringi)
+library(readr)
+library(purrr)
+library(readr)
+library(dplyr)
+# url de busqueda zona censal y localidad rural
+url_data <- "https://www.sii.cl/ayudas/asistencia/oficinas/3048-3049.html"
+limpiar_texto <- function(x) {
+x <-
+x %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+return(x)
+}
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# visistar url busqueda
+remDr$navigate(url_data)
+btns <- remDr$findElements("tag","button")
+length(btns)
+btns[[1]]$highlightElement()
+for (i in seq_len(length(btns))) btns[[i]]$highlightElement()
+sel_com <- btns[[2]]
+sel_com$highlightElement()
+sel_reg <- btns[[1]]
+sel_reg$clickElement()
+opt_reg <- remDr$findElements("class","dropdown-menu")
+length(opt_reg)
+opt_reg[[1]]$highlightElement()
+opt_reg[[2]]$highlightElement()
+opt_reg[[3]]$highlightElement()
+opt_reg[[3]]$highlightElement()
+opt_reg[[4]]$highlightElement()
+opt_reg[[4]]$highlightElement()
+opt_reg[[1]]$highlightElement()
+opt_reg[[2]]$highlightElement()
+opt_reg[[1]]$highlightElement()
+opt_reg[[1]]$highlightElement()
+opt_reg[[3]]$highlightElement()
+opt_reg <- remDr$findElements("class","dropdown-menu inner")
+opt_reg <- remDr$findElements("xpath","\\div[@class,'dropdown-menu inner']")
+opt_reg <- remDr$findElements("xpath","//div[@class,'dropdown-menu inner']")
+opt_reg <- remDr$findElements("xpath","//div[contains(@class,'dropdown-menu inner')]")
+opt_reg %>% length()
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu inner')]")
+opt_reg %>% length()
+opt_reg[[1]]$highlightElement()
+opt_reg[[2]]$highlightElement()
+opt_reg[[1]]$highlightElement()
+opt_reg[[2]]$highlightElement()
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu inner')]")[[1]]
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu inner')]")[[1]]
+opt_reg$findChildElements("tag","span")
+reg <- opt_reg$findChildElements("tag","span")
+reg %>% length()
+reg[[1]]$highlightElement()
+reg[[1]]$highlightElement()
+reg[[34]]$highlightElement()
+reg[[2]]$highlightElement()
+reg[[3]]$highlightElement()
+reg[[4]]$highlightElement()
+reg <- lapply(opt_reg$findChildElements("tag","span"), function(x) x$getElementText()}
+# todo el contenido esta dentro iframe
+# iframes <- remDr$findElements("tag","iframe")
+# remDr$switchToFrame(iframes[[1]])
+#
+# # rescatar selectores
+#
+# select <- remDr$findElements("tag","select")
+# sel_reg <- select[[1]]
+# sel_of <- select[[2]]
+# buscar <- remDr$findElement("id","BUSCAR")
+#
+# # opciones de regiones
+#
+# opt_reg <- sel_reg$findChildElements("tag","option")
+#
+# acumulador --------------------------------------------------------------
+resultado <-
+tibble(
+region = as.character(),
+oficina = as.character(),
+direccion  = as.character(),
+horario = as.character(),
+href = as.character(),
+)
+for (i in seq_len(length(opt_reg))) {
+cat("region",i,"\n")
+# rescata text region
+reg <- opt_reg[[i]]
+reg_txt <- reg$getElementText()[[1]] %>% limpiar_texto()
+# saltarse "seleccionar"
+if (str_detect(reg_txt,"seleccione")) next
+# click
+reg$clickElement()
+# rescatar oficinas
+opt_of <- sel_of$findChildElements("tag","option")
+ofs_txt <- unlist(lapply(opt_of, function(x) x$getElementText()))
+for (j in seq_len(length(opt_of))){
+cat("oficina",j,"\n")
+of <- opt_of[[j]]
+of_txt <- of$getElementText() %>% limpiar_texto()
+if (str_detect(of_txt,"seleccione")) next
+of$clickElement()
+buscar$clickElement()
+Sys.sleep(1)
+# rescata info
+cont <- remDr$findElement("class","ContenedorCentro")
+# test
+text_att <- cont$findChildElements("class","gx-attribute")
+max_min <- 1
+for (z in seq_len(length(text_att))) {
+if (length(text_att[[z]]$findChildElements("tag","span"))==0) {
+max_min <- z
+next
+}
+# cat(
+#   z, "gx-label:",
+#   text_att[[z]]$findChildElement("class","gx-label")$getElementText()[[1]],
+#   "span: ",
+#   text_att[[z]]$findChildElement("tag","span")$getElementText()[[1]],
+#   "\n"
+# )
+info <- text_att[[z]]$findChildElement("tag","span")$getElementText()[[1]] %>% limpiar_texto()
+# horario
+if (str_detect(info,'lunes|martes|miercoles|jueves|viernes|sabado|domingo')) {
+horario <- info
+next
+}
+# oficial
+if (str_detect(info, 'oficial civil')) {
+oficial <- info
+next
+}
+# direccion | primera info visible
+if (z == max_min+1) {
+direccion <- info
+next
+}
+}
+text_block <- remDr$findElements("class","TextBlock")
+text_block[[2]]$highlightElement()
+ver <- text_block[[2]]$findChildElement("tag","a")
+ver$clickElement()
+Sys.sleep(.5)
+remDr$findElements("tag","iframe") %>% length()
+frame <- remDr$findElement("tag","iframe")
+href <- frame$getElementAttribute("src")[[1]]
+cerrar <- remDr$findElement("name","CERRAR")
+cerrar$clickElement()
+# llenar info
+# resultado <-
+#   tibble(
+#     region = as.character(),
+#     oficina = as.character(),
+#     direccion  = as.character(),
+#     horario = as.character(),
+#     href = as.character(),
+#   )
+# pos <- pos + 1
+resultado <-
+add_row(resultado,
+region = reg_txt,
+oficina = of_txt,
+direccion = direccion,
+horario = horario,
+href = href
+)
+} # fin ciclo oficina
+} # fin ciclo region
+remDr$close()
+write_csv(resultado,'data/registro-civil-scrap.csv')
+reg <- lapply(opt_reg$findChildElements("tag","span"), function(x) x$getElementText())
+reg
+reg
+reg[[1]]$getElementText
+reg[[1]]$getElementText()
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# visistar url busqueda
+remDr$navigate(url_data)

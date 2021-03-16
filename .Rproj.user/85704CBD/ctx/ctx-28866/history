@@ -1,0 +1,404 @@
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+library(stringr)
+library(stringi)
+library(readr)
+library(purrr)
+library(readr)
+library(dplyr)
+# url de busqueda zona censal y localidad rural
+url_data <- "https://www.sii.cl/ayudas/asistencia/oficinas/3048-3049.html"
+limpiar_texto <- function(x) {
+x <-
+x %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+return(x)
+}
+rescatar_botones <- function(remDr) {
+btns <- webElement
+sel_reg <- webElement
+sel_com <- webElement
+btns <- remDr$findElements("tag", "button")
+for (i in seq_len(length(btns))) btns[[i]]$highlightElement()
+sel_reg <- btns[[1]]
+sel_com <- btns[[2]]
+return(list(sel_reg,sel_com))
+}
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# visistar url busqueda
+remDr$navigate(url_data)
+btns <- rescatar_botones(remDr)
+list(sel_reg = sel_reg)
+list(sel_reg = webElement)
+rescatar_botones <- function(remDr) {
+btns <- webElement
+sel_reg <- webElement
+sel_com <- webElement
+btns <- remDr$findElements("tag", "button")
+for (i in seq_len(length(btns))) btns[[i]]$highlightElement()
+sel_reg <- btns[[1]]
+sel_com <- btns[[2]]
+return(list(sel_reg = sel_reg, sel_com = sel_com))
+}
+btns <- rescatar_botones(remDr)
+sel_reg <- btns$sel_reg
+sel_com <- btns$sel_com
+btns$sel_reg$clickElement()
+# opt_reg <- remDr$findElements("class","dropdown-menu inner")
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[1]]
+opt_reg$highlightElement()
+reg <- opt_reg$findChildElements("tag","span")
+txt_reg <- lapply(reg,function(x) {x$getElementText()}) %>% unlist() %>%  limpiar_texto()
+txt_reg
+# recuperar elementos con texto : iterador region
+it_reg <- txt_reg %>% str_detect("region \\w+") %>% which()
+it_Reg
+it_reg
+i<-3
+cat(i)
+reg[[i]]$clickElement()
+nom_reg <- txt_reg[[i]]
+nom_reg
+# click comuna
+sel_com$clickElement()
+# rescatar comunas
+opt_com <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[2]]
+opt_com$highlightElement()
+# rescatar elementos de comuna
+com <- opt_com$findChildElements("tag","span")
+txt_com <- lapply(com,function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+txt_com
+it_com <- txt_com %>% str_detect("\\w") %>% which()
+j<-3
+nom_com <- txt_com[[j]]
+nom_com
+com[[j]]$clickElement()
+# buscar contenedor info
+infocom <-remDr$findElement("class","info-comunas")
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+titulo
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+items_info_txt
+j<-4
+j<-5
+nom_com <- txt_com[[j]]
+nom_com
+com[[j]]$clickElement()
+rescatar_regiones <- function(remDr) {
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# rescata opciones
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[1]]
+# opt_reg$highlightElement()
+# rescata opciones individuales de region
+reg <- opt_reg$findChildElements("tag","span")
+# rescata texto de opciones individuales
+txt_reg <- lapply(reg,function(x) {x$getElementText()}) %>% unlist() %>%  limpiar_texto()
+# recuperar elementos con texto : iterador region
+it_reg <- txt_reg %>% str_detect("region \\w+") %>% which()
+return(list(opt_reg = opt_reg, reg = reg, txt_reg = txt_reg, it_reg = it_reg))
+}
+rescatar_regiones <- function(remDr) {
+# inicializa elementos
+opt_reg <- webElement
+reg <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# rescata opciones
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[1]]
+# opt_reg$highlightElement()
+# rescata opciones individuales de region
+reg <- opt_reg$findChildElements("tag","span")
+# rescata texto de opciones individuales
+txt_reg <- lapply(reg,function(x) {x$getElementText()}) %>% unlist() %>%  limpiar_texto()
+# recuperar elementos con texto : iterador region
+it_reg <- txt_reg %>% str_detect("region \\w+") %>% which()
+return(list(opt_reg = opt_reg, reg = reg, txt_reg = txt_reg, it_reg = it_reg))
+}
+elem_reg <- rescatar_regiones(remDr)
+elem_reg$txt_reg
+elem_reg$it_reg
+rescatar_comunas <- function(remDr) {
+# inicializa elementos
+opt_com <- webElement
+com <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# click comuna
+sel_com$clickElement()
+# rescatar comunas
+opt_com <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[2]]
+opt_com$highlightElement()
+# rescatar elementos de comuna
+com <- opt_com$findChildElements("tag","span")
+txt_com <- lapply(com,function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+it_com <- txt_com %>% str_detect("\\w") %>% which()
+return(list(opt_com = opt_com, com = com, txt_com = txt_com, it_com = it_com))
+}
+elem_reg <- rescatar_regiones(remDr)
+elem_reg$it_reg
+elem_reg$it_reg
+elem_reg$txt_reg
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+rescatar_regiones <- function(remDr) {
+# inicializa elementos
+opt_reg <- webElement
+reg <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# rescata opciones
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[1]]
+# opt_reg$highlightElement()
+# rescata opciones individuales de region
+reg <- opt_reg$findChildElements("tag","span")
+# rescata texto de opciones individuales
+txt_reg <- lapply(reg,function(x) {x$getElementText()}) %>% unlist() %>%  limpiar_texto()
+# recuperar elementos con texto : iterador region
+it_reg <- txt_reg %>% str_detect("region \\w+") %>% which()
+# click para cerrar selector
+btns <- rescatar_botones(remDr)
+return(list(opt_reg = opt_reg, reg = reg, txt_reg = txt_reg, it_reg = it_reg))
+}
+# click para cerrar selector
+btns <- rescatar_botones(remDr)
+# click para cerrar selector
+btns$sel_reg$clickElement()
+rescatar_regiones <- function(remDr) {
+# inicializa elementos
+opt_reg <- webElement
+reg <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# luego hace click en selector region
+btns$sel_reg$clickElement()
+# rescata opciones
+opt_reg <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[1]]
+# opt_reg$highlightElement()
+# rescata opciones individuales de region
+reg <- opt_reg$findChildElements("tag","span")
+# rescata texto de opciones individuales
+txt_reg <- lapply(reg,function(x) {x$getElementText()}) %>% unlist() %>%  limpiar_texto()
+# recuperar elementos con texto : iterador region
+it_reg <- txt_reg %>% str_detect("region \\w+") %>% which()
+# click para cerrar selector
+btns$sel_reg$clickElement()
+return(list(opt_reg = opt_reg, reg = reg, txt_reg = txt_reg, it_reg = it_reg))
+}
+# inicializa elementos
+opt_com <- webElement
+com <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# click comuna
+btns$sel_com$clickElement()
+# rescatar comunas
+opt_com <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[2]]
+opt_com$highlightElement()
+# rescatar elementos de comuna
+com <- opt_com$findChildElements("tag","span")
+txt_com <- lapply(com,function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+it_com <- txt_com %>% str_detect("\\w") %>% which()
+btns$sel_com$clickElement()
+com[[5]]
+com[[5]]$clickElement()
+com[[7]]$clickElement()
+rescatar_comunas <- function(remDr) {
+# inicializa elementos
+opt_com <- webElement
+com <- webElement
+# primero rescata botones
+btns <- rescatar_botones(remDr)
+# click comuna
+btns$sel_com$clickElement()
+# rescatar comunas
+opt_com <- remDr$findElements("xpath","//*[contains(@class,'dropdown-menu open')]")[[2]]
+opt_com$highlightElement()
+# rescatar elementos de comuna
+com <- opt_com$findChildElements("tag","span")
+txt_com <- lapply(com,function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+it_com <- txt_com %>% str_detect("\\w") %>% which()
+# se omite click final porque este se realiza en el elemento comuna que se rescatara
+# btns$sel_com$clickElement()
+return(list(opt_com = opt_com, com = com, txt_com = txt_com, it_com = it_com))
+}
+# visistar url busqueda
+remDr$navigate(url_data)
+btns <- rescatar_botones(remDr)
+btns$sel_reg$clickElement()
+btns$sel_reg$clickElement()
+elem_reg <- rescatar_regiones(remDr)
+elem_reg$opt_reg$clickElement()
+# visistar url busqueda
+remDr$navigate(url_data)
+btns <- rescatar_botones(remDr)
+elem_reg <- rescatar_regiones(remDr)
+btns$sel_reg$clickElement()
+elem_reg$opt_reg$highlightElement()
+elem_reg$it_reg
+i
+elem_reg$reg[[i]]$clickElement()
+# nombre region
+nom_reg <- elem_reg$txt_reg[[i]]
+# click comuna
+btns$sel_com$clickElement()
+elem_com <- rescatar_comunas(remDr)
+elem_com$txt_com
+elem_com <- rescatar_comunas(remDr)
+elem_com$txt_com
+elem_com$it_com
+j
+elem_com$com[[j]]$clickElement()
+# buscar contenedor info
+infocom <-remDr$findElement("class","info-comunas")
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+# volvera buscar elementos
+btns <- rescatar_botones(remDr)
+elem_reg <- rescatar_regiones(remDr)
+elem_reg <- rescatar_comunas(remDr)
+btns$sel_com$clickElement()
+elem_com<- rescatar_comunas(remDr)
+last_com <- max(elem_com$it_com)
+last_com
+# buscar contenedor info
+infocom <-remDr$findElement("class","info-comunas")
+infocom$highlightElement()
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+titulo
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+items_info_txt
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+# buscar contenedor info
+infocom <-remDr$findElement("class","info-comunas")
+infocom$highlightElement()
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+items_info_txt
+# buscar contenedor info
+infocom <-remDr$findElement("class","info-comunas")
+infocom$highlightElement()
+# items
+items_info <- infocom$findChildElements("class","items-info-comunas")
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+# volvera buscar elementos
+btns <- rescatar_botones(remDr)
+items_info_txt
+items_info_txt %>% str_replace_all("\\\\w","")
+items_info_txt %>% str_replace_all("\\\w","")
+items_info_txt %>% str_replace_all("\n","")
+items_info_txt %>% str_replace_all("\n"," ")
+txt_com
+elem_com$txt_com
+# contenedor info comuna --------------------------------------------------
+infocom <-remDr$findElement("class","info-comunas")
+infocom$highlightElement()
+# titulo
+titulo <- remDr$findElement("class","bloque-title")$getElementText()[[1]] %>% limpiar_texto()
+titulo
+items_info
+items_info_txt
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto() %>% str_replace_all('\n',' ')
+items_info_txt
+items_info
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto() %>% str_replace_all('\n',' ')
+items_info_txt <- lapply(items_info, function(x) {x$getElementText()}) %>% unlist() %>% limpiar_texto()
+items_info_txt <- items_info_txt %>%
+# llenar info
+# direccion siempre es el segundo elemento
+# hay oficinas que sirven a mas de una comuna, lo cual se describe en Comunas: nombres
+# Para evitar visitar dos veces la misma oficina
+# - guardar Comuna: nombres
+# - crear listado de comunas a no visitar
+# - al iniciar el checkeo comunal se revisa si el nombre de la comuna esta en este listado
+# - añadir elementos al listado a medida que se recupere esta informacion (no actualizar)
+# volvera buscar elementos
+btns <- rescatar_botones(remDr)
+items_info_txt <- items_info_txt %>% %>% str_replace_all('\n',' ')
+items_info_txt
+items_info_txt <- items_info_txt %>% str_replace_all('\n',' ')
+items_info_txt
+# llenar info
+# direccion siempre es el segundo elemento
+direccion <- tems_info_txt[[2]]
+# llenar info
+# direccion siempre es el segundo elemento
+direccion <- items_info_txt[[2]]
+direccion
+items_info_txt %>% str_subset('comunas:')
+items_info_txt %>% str_subset('comunas:') %>% str_replace('comunas:','') %>% stri_c(sep=",")
+items_info_txt %>% str_subset('comunas:') %>% str_replace('comunas:','') %>% str_c(sep=",")
+items_info_txt %>% str_subset('comunas:') %>% str_replace('comunas:','') %>% str_split(",")
+items_info_txt %>% str_subset('comunas:') %>% str_replace('comunas:','') %>% str_split(",") %>% flatten() %>% str_trim()
+items_info_txt %>% str_subset('comunas:') %>% str_replace('comunas:','') %>% str_replace_all("\\.","") %>% str_split(",") %>% flatten() %>% str_trim()
+comunas_atiende <- items_info_txt %>% str_subset('comunas:')
+comunas_atiende
+comunas_atiende_vect <- comunas_atiende %>% str_replace('comunas:','') %>% str_replace_all("\\.","") %>% str_split(",") %>% flatten() %>% str_trim()
+comunas_atiende_vect
+horario_atencion <- items_info_txt %>% str_subset('horario atencion:')
+horario_atencion
+horario_atencion <- items_info_txt %>% str_subset('horario de atencion:')
+horario_atencion
+horario_atencion <- items_info_txt %>% str_subset('horario de atencion:')[[1]]
+str_subset(items_info_txt,'horario de atencion:')
+str_subset(items_info_txt,'horario de atencion:')[[1]]
+resultado <-
+tibble(
+region = as.character(),
+comuna = as.character(),
+titulo = as.character(),
+comunas_atiende = as.character(),
+direccion  = as.character(),
+horario = as.character()
+# href = as.character(),
+)
+nom_reg
+titulo
+direccion
+# llenar info
+resultado <-
+add_row(
+resultado,
+region = nom_reg,
+comuna = nom_com,
+titulo = titulo,
+direccion = direccion,
+horario = horario_atencion
+)
+resultado
+comunas_atiende

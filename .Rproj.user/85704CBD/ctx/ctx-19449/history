@@ -1,0 +1,512 @@
+list[label = 'Lista de elementos']
+webdir -> rselenium
+rselenium -> webelements
+webelements -> {btn_buscar selectores}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+webdir -> rselenium
+rselenium -> webelements
+webelements -> {btn_buscar selectores}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> weblements
+webelements -> {btn_buscar selectores}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar informacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardad_info
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar informacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar \ninformacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Directorio \nPáginas']
+check_tipo_web [shape = diamond, label = 'Check \ntipo página']
+estatica[shape = rect]
+dinamica[shape = rect]
+rselenium[shape = box]
+rvest[shape = box]
+webdir -> dec_tipo_web
+check_tipo_web -> {estatica dinamica}
+estatica -> rvest
+dinamica -> rselenium
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Directorio \nPáginas']
+check_tipo_web [shape = diamond, label = 'Check \ntipo página']
+estatica[shape = rect]
+dinamica[shape = rect]
+rselenium[shape = box]
+rvest[shape = box]
+webdir -> check_tipo_web
+check_tipo_web -> {estatica dinamica}
+estatica -> rvest
+dinamica -> rselenium
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Directorio \nPáginas']
+check_tipo_web [shape = diamond, label = 'Check \ntipo página']
+estatica[shape = rect]
+dinamica[shape = rect]
+rselenium[shape = box]
+rvest[shape = box]
+check_info[shape = diamond, label = 'Check \n info disponible']
+direcciones[shape = box]
+mapa[shape = box, label = 'Mapa \n incrustado']
+id_map_element [ shape = diamond, label = 'Identificar \nelemento mapa']
+href[label = box]
+iframe[label = box]
+webdir -> check_tipo_web
+check_tipo_web -> {estatica dinamica}
+estatica -> rvest
+dinamica -> rselenium
+check_tipo_web -> check_info
+check_info -> {direcciones mapa}
+mapa -> id_map_element
+id_map_element -> {href iframe}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Directorio \nPáginas']
+check_tipo_web [shape = diamond, label = 'Check \ntipo página']
+estatica[shape = rect]
+dinamica[shape = rect]
+rselenium[shape = box]
+rvest[shape = box]
+check_info[shape = diamond, label = 'Check \n info disponible']
+direcciones[shape = box]
+mapa[shape = box, label = 'Mapa \n incrustado']
+id_map_element [ shape = diamond, label = 'Identificar \nelemento mapa']
+href[shape = box]
+iframe[shape = box]
+webdir -> check_tipo_web
+check_tipo_web -> {estatica dinamica}
+estatica -> rvest
+dinamica -> rselenium
+check_tipo_web -> check_info
+check_info -> {direcciones mapa}
+mapa -> id_map_element
+id_map_element -> {href iframe}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Directorio \nPáginas']
+check_tipo_web [shape = diamond, label = 'Check \ntipo página']
+estatica[shape = rect]
+dinamica[shape = rect]
+rselenium[shape = box]
+rvest[shape = box]
+check_info[shape = diamond, label = 'Check \n info disponible']
+direcciones[shape = box]
+mapa[shape = box, label = 'Mapa \n incrustado']
+id_map_element [ shape = cds, label = 'Identificar \nelemento mapa']
+href[shape = box]
+iframe[shape = box]
+webdir -> check_tipo_web
+check_tipo_web -> {estatica dinamica}
+estatica -> rvest
+dinamica -> rselenium
+check_tipo_web -> check_info
+check_info -> {direcciones mapa}
+mapa -> id_map_element
+id_map_element -> {href iframe}
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar \ninformacion']
+data_salida [shape = folder, label = 'Data']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+guardar_info -> data_salida
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar \ninformacion']
+data_salida [shape = folder, label = 'Data Web']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+guardar_info -> data_salida
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab]
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar \ninformacion']
+data_salida [shape = folder, label = 'Data Web']
+georef[label='5. Georeferenciacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+guardar_info -> data_salida
+data_salida -> georef
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab, label = 'Contenedor\ninfo']
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+guardar_info[label = '4. Guardar \ninformacion']
+data_salida [shape = folder, label = 'Data Web']
+georef[label='5. Georeferenciacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+rselenium -> guardar_info
+guardar_info -> data_salida
+data_salida -> georef
+}")
+DiagrammeR::grViz("digraph {
+graph [layout = dot, rankdir = LR]
+webdir [shape = folder, label = 'Web Dinámica']
+rselenium [ shape = box]
+inspect_web[shape=cds, label='Inspeccionar \nNavegador']
+webelements [label = '1. Identificar \nelementos \nweb']
+btn_buscar[shape = cds]
+selectores[shape = tab]
+sel_region[shape = cds]
+sel_comuna[shape = cds]
+contenedor_info[shape = tab, label = 'Contenedor\ninfo']
+webelements_pack[label = '2. Empaquetar\nelementos web']
+fun[shape=invhouse, label='Funcion']
+list[shape=box, label = 'Lista de elementos']
+iterador[label = '3. Iterar por\n los elementos']
+acumulador[shape=box]
+interaccion_pag[shape=box,label='interaccion\nweb']
+guardar_info[label = '4. Guardar \ninformacion']
+data_salida [shape = folder, label = 'Data Web']
+georef[label='5. Georeferenciacion']
+webdir -> rselenium
+rselenium -> webelements
+inspect_web -> webelements
+webelements -> {btn_buscar selectores contenedor_info}
+selectores -> {sel_region sel_comuna}
+rselenium -> webelements_pack
+webelements_pack -> {fun, list}
+rselenium -> iterador
+iterador -> {acumulador, interaccion_pag}
+rselenium -> guardar_info
+guardar_info -> data_salida
+data_salida -> georef
+}")
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+library(dplyr)
+library(stringr)
+library(readr)
+# url de busqueda zona censal y localidad rural
+url_fonasa <- "https://www.fonasa.cl/sites/fonasa/beneficiarios/tramites/sucursales"
+# setup selenium ----------------------------------------------------------
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+# setup selenium ----------------------------------------------------------
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+# debiese abrir un navegador chrome
+rD <- rsDriver()
+install.packages("Rselenium")
+install.packages("RSelenium")
+install.packages("RSelenium")
+install.packages("Rselenium")
+install.packages("RSelenium")
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+library(dplyr)
+library(stringr)
+library(readr)
+# url de busqueda zona censal y localidad rural
+url_fonasa <- "https://www.fonasa.cl/sites/fonasa/beneficiarios/tramites/sucursales"
+limpiar_texto <- function(x) {
+x <-
+x %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+return(x)
+}
+# setup selenium ----------------------------------------------------------
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+# setup selenium ----------------------------------------------------------
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+# setup selenium ----------------------------------------------------------
+# debiese abrir un navegador chro,e
+rD <- rsDriver()

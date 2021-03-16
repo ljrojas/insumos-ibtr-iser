@@ -1,0 +1,512 @@
+remDr$findElements("class","acive-mapa")
+remDr$findElements("tag","div")
+remDr$findElements("tag","div") %>% length()
+remDr
+remDr$show()
+#   remDr %>% getWindowHandles() # All windows in the session
+remDr %>% getWindowHandles() # All windows in the session
+remDr$getWindowHandles()
+remDr$getWindowPosition()
+webElem <- remDr$findElements(value = "//frame")
+webElem
+# visistar url busqueda
+remDr$navigate(url_isp)
+webElem <- remDr$findElements(value = "//frame")
+webElem <- remDr$findElements(value = "//frame")
+webElem
+# 1. boton buscar
+buscar <- remDr$findElement('id','buscar')
+# 2. selector region y comuna
+selector <- remDr$findElements("tag", "select")
+selector %>% length()
+selector[[2]]$getElementText()
+# asignar selectores region y comuna
+for (j in seq_len(length(selector))) {
+texto <-
+selector[[j]]$getElementText() %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower()
+# print(texto)
+if (str_detect(texto,'region')) {
+sel_region <- selector[[j]]
+}
+if (str_detect(texto,'comuna')) {
+sel_comuna <- selector[[j]]
+}
+}
+# click selector region
+sel_region$clickElement()
+# rescatar opciones
+opt_region <- sel_region$findChildElements("tag","option")
+for (i in seq_len(2)) { #test
+# for (i in seq_len(length(opt_region))) {
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# descartar texto "seleccione"
+if (str_detect(text_opt_reg,'seleccione')) {
+cat('Boton sin region\n')
+next
+}
+# click region
+cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+for (j in seq_len(length(opt_comunas))) {
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) {
+next
+}
+cat(text_comuna,'\n')
+# click comuna
+opt_comunas[[j]]$clickElement()
+# click buscar
+cat('click buscar\n')
+buscar$clickElement()
+#####
+# rescatar elementos comuna individual
+# pseudo selectores :: after
+# javascript
+# script = "return window.getComputedStyle(document.querySelector('div.crow'),':before').getPropertyValue('content')"
+# script <- "document.getElementById('hplogo').hidden = true;
+#        return document.getElementById('hplogo').hidden;"
+# remDr$executeScript(script, args = list())
+# cand <- remDr$findElement('tag','h4')
+# cand <- remDr$findElements("xpath","//h4[contains(@class,'h-titulo') ]")
+# cand <- remDr$findElements("xpath","//h4[contains(@class,'h-titulo') ]")
+# cand <- remDr$findElements("xpath","//h4[@class = 'h-titulo'][@class='h-centrado']")
+c <- remDr$findElements("xpath","//div[contains(@class,'panel-body')]")
+length(c)
+c[[1]]$highlightElement()
+# titulo comuna
+h4 <- c[[1]]$findChildElements("tag","h4")
+h4[[2]]$getElementText()
+for (h in seq_len(length(h4))) {
+text_h4 <- h4[[h]]$getElementText()[[1]] %>% str_trim()
+if (text_h4 == "" ) next
+cat(text_h4)
+}
+# direccion
+dir <- c[[1]]$findChildElements("class","minirecuadro")
+length(dir)
+for (x in seq_len(length(dir))) {
+text_dir <- dir[[x]]$getElementText()[[1]] %>% str_trim()
+if (text_dir=="") next
+cat(text_dir,"\n")
+}
+# boton mapa
+btn_gm <- c[[1]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+for (b in seq_len(length(btn_gm))) {
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+if (text_btn=="") next
+cat(text_btn,"\n")
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+href <- btn_gm[[b]]$getElementAttribute("href")
+# click boton iframe
+btn_gm[[b]]$clickElement()
+# seleccionar iframe
+iframe <- c[[1]]$findChildElements("tag","iframe")[[1]]
+remDr$switchToFrame(iframe)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+href <- ll[[1]]$getElementAttribute('href')
+# volver a frame original
+remDr$switchToFrame(NULL)
+btn_gm1 <- c[[1]]$findChildElements("class","alternar-respuesta")
+# cerrar el mapa
+# click boton iframe
+btn_gm[[b]]$isElementEnabled()
+btn_gm[[b]]$clickElement()
+}
+# check "ver mapa"
+btn_gm[[2]]$getElementText()
+btn_gm[[2]]$getElementAttribute("data-iframe")
+# horario de atencion
+# TODO
+# click mapa
+# recuperar latlon
+}
+}
+ll
+c[[1]]$findChildElements("tag","iframe")[[1]]
+# click boton iframe
+btn_gm[[b]]$clickElement()
+href <- btn_gm[[b]]$getElementAttribute("href")
+remDr$switchToFrame(NULL)
+# click boton iframe
+btn_gm[[b]]$clickElement()
+# visistar url busqueda
+remDr$navigate(url_isp)
+# 1. boton buscar
+buscar <- remDr$findElement('id','buscar')
+# 2. selector region y comuna
+selector <- remDr$findElements("tag", "select")
+selector %>% length()
+selector[[2]]$getElementText()
+# asignar selectores region y comuna
+for (j in seq_len(length(selector))) {
+texto <-
+selector[[j]]$getElementText() %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower()
+# print(texto)
+if (str_detect(texto,'region')) {
+sel_region <- selector[[j]]
+}
+if (str_detect(texto,'comuna')) {
+sel_comuna <- selector[[j]]
+}
+}
+# click selector region
+sel_region$clickElement()
+# rescatar opciones
+opt_region <- sel_region$findChildElements("tag","option")
+i<-2
+# for (i in seq_len(length(opt_region))) {
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# descartar texto "seleccione"
+if (str_detect(text_opt_reg,'seleccione')) {
+cat('Boton sin region\n')
+next
+}
+# click region
+cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+j<-2
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) {
+next
+}
+cat(text_comuna,'\n')
+# click comuna
+opt_comunas[[j]]$clickElement()
+# click buscar
+cat('click buscar\n')
+buscar$clickElement()
+c <- remDr$findElements("xpath","//div[contains(@class,'panel-body')]")
+length(c)
+c[[1]]$highlightElement()
+# titulo comuna
+h4 <- c[[1]]$findChildElements("tag","h4")
+h4[[2]]$getElementText()
+h4[[1]]$getElementText()
+for (h in seq_len(length(h4))) {
+text_h4 <- h4[[h]]$getElementText()[[1]] %>% str_trim()
+if (text_h4 == "" ) next
+cat(text_h4)
+}
+# direccion
+dir <- c[[1]]$findChildElements("class","minirecuadro")
+length(dir)
+for (x in seq_len(length(dir))) {
+text_dir <- dir[[x]]$getElementText()[[1]] %>% str_trim()
+if (text_dir=="") next
+cat(text_dir,"\n")
+}
+# boton mapa
+btn_gm <- c[[1]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+b<-1
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+if (text_btn=="") next
+cat(text_btn,"\n")
+b
+data_iframe <- remDr]$getElementAttribute("data-iframe")
+data_iframe <- remDr$getElementAttribute("data-iframe")
+length(remDr$findElements("tag","iframe")
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+href <- btn_gm[[b]]$getElementAttribute("href")
+# click boton iframe
+btn_gm[[b]]$clickElement()
+# seleccionar iframe
+iframe <- c[[1]]$findChildElements("tag","iframe")[[1]]
+remDr$switchToFrame(iframe)
+remDr$switchToFrame(NULL)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+href <- ll[[1]]$getElementAttribute('href')
+# volver a frame original
+remDr$switchToFrame(NULL)
+btn_gm1 <- c[[1]]$findChildElements("class","alternar-respuesta")
+# cerrar el mapa
+# click boton iframe
+btn_gm[[b]]$isElementEnabled()
+btn_gm[[b]]$clickElement()
+}
+# check "ver mapa"
+btn_gm[[2]]$getElementText()
+btn_gm[[2]]$getElementAttribute("data-iframe")
+# horario de atencion
+# TODO
+# click mapa
+# recuperar latlon
+}
+}
+# descartar texto "Seleccione Region"
+opt_region[[2]]$getElementText()
+opt_region[[2]]$clickElement()
+opt_comunas <- sel_comuna$findChildElements("tag","option")
+length(opt_comunas)
+# descartar seleccionar comuna
+# seleccciona comuna
+opt_comunas[[2]]$getElementText()
+# seleccionar comuna
+comunas[[3]]$clickElement()
+# 2. click boton buscar
+buscar$clickElement()
+# rescatar elementos resultantes
+elementos <- remDr$findElements("class name", "accordion-toggle")
+# CHECK TEXTO #region
+elementos[[1]]$getElementText()[[1]]
+# si contiene rescatar link
+elementos[[1]]$getElementAttribute('href')[[1]]
+# clickear elemento
+elementos[[5]]$clickElement()
+# numero paginas
+paginas <- remDr$findElements("class name", "page page-")
+# 1. Rescatar zonas censales y links
+# Iniciar acumulador
+zonas <- data.frame(region = character(), url = character())
+# loop guardar link y nombre region
+for (i in seq_len(length(elementos))) {
+# si nombre contiene zona censal
+if (elementos[[i]]$getElementText()[[1]] %>% str_detect('Zona Censal')) {
+# rescata nombre region (text) y link (href)
+zonas[i,] <- c(elementos[[i]]$getElementText()[[1]],
+elementos[[i]]$getElementAttribute('href')[[1]])
+}
+}
+# 2. Recuperar link descarga archivo
+# Estrategia:
+# Abrir cada pagina y buscar boton descarga
+# Luego rescatar vinculo a Shapefile
+# iniciar acumulador
+links_descarga <- data.frame(region = character(), link = character())
+# loop entrar link y recuperar link descarga archivo
+for (i in seq_len(nrow(zonas))) {
+# parametros
+region <- zonas$region[i]
+url_reg <- zonas$url[i]
+# visitar pagina
+remDr$navigate(url_reg)
+# Sys.sleep
+# buscar boton download
+btn <- remDr$findElement('css selector','.hub-download')
+btn$clickElement() # opciones de descarga aparecen
+# buscar shp
+el1 <- remDr$findElements('class name', 'download-item')
+# acumulador
+link_descarga <- data.frame(text = character(), id = character(), href = character())
+# loop construir alternativas de descarga
+for (j in seq_len(length(el1))) {
+# print(el1[[i]]$getElementText())
+# print(el1[[i]]$getElementAttribute('id'))
+# print(el1[[i]]$getElementAttribute('href'))
+link_descarga[j,] <- c(
+el1[[j]]$getElementText()[[1]],
+el1[[j]]$getElementAttribute('id')[[1]],
+el1[[j]]$getElementAttribute('href')[[1]]
+)
+}
+# limpiar
+link_descarga <-
+link_descarga %>%
+mutate(
+text = str_to_lower(text), # minusculas
+id = str_extract(id,'\\d+') %>% as.numeric(), # rescata num id
+href = str_extract(href,'.*\\w{3}(?=\\?)') # descarta parametros url
+)
+# filtrar menor id y guardar en acumulador general (linkS_descarga)
+links_descarga[i,] <-
+c(
+region,
+link_descarga %>%
+filter(
+str_detect(text,'shape')
+) %>%
+filter(
+id == min(id) # primer elemento que aparece; el segundo es subset
+) %>%
+pull(href)
+)
+}
+# consolidar resultados
+zonas <-
+zonas %>%
+left_join(links_descarga)
+# guardar resultados
+write_csv(zonas, 'data/links-download-zonas.csv')
+# localidades rurales -----------------------------------------------------
+# insepeccion de resultados muestra que link de pagina de elemento a descargar
+# contiene informacion para construir link de descarga de información
+# visistar pagina resultados de busqueda
+remDr$navigate(url_loc)
+# rescatar resultados
+elementos <- remDr$findElements("class name", "result-name")
+# chequear si nombre contiene region y zona censal
+elementos[[1]]$getElementText()[[1]] %>% str_detect('Localidad Rural')
+# si contiene rescatar link
+elementos[[1]]$getElementAttribute('href')[[1]]
+# guardar link y nombre region
+localidades <- data.frame(region=character(),url=character())
+for (i in seq_len(length(elementos))) {
+if (elementos[[i]]$getElementText()[[1]] %>% str_detect('Localidad Rural')) {
+localidades[i,] <- c(elementos[[i]]$getElementText()[[1]],
+elementos[[i]]$getElementAttribute('href')[[1]])
+}
+}
+# construye link de descarga a partir de direccion resultados
+localidades <-
+localidades %>%
+mutate(href = str_replace(url,'geo-ine-chile.','') %>% paste0(.,'.zip'))
+# guardar resultados
+localidades %>%
+write_csv('data/links-downloads-localidades.csv')
+# cerrar selenium
+remDr$close()
+length(remDr$findElements("tag","iframe"))
+# library(rvest)
+library(RSelenium) # requiere chrome y java
+library(stringr)
+library(stringi)
+library(readr)
+library(purrr)
+# url de busqueda zona censal y localidad rural
+url_isp <- "https://www.ips.gob.cl/servlet/internet/inicio/red-de-atencion/sucursales"
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# debiese abrir un navegador chro,e
+rD <- rsDriver()
+remDr <- rD[["client"]]
+# visistar url busqueda
+remDr$navigate(url_isp)
+# 1. boton buscar
+buscar <- remDr$findElement('id','buscar')
+# 2. selector region y comuna
+selector <- remDr$findElements("tag", "select")
+selector %>% length()
+selector[[2]]$getElementText()
+# asignar selectores region y comuna
+for (j in seq_len(length(selector))) {
+texto <-
+selector[[j]]$getElementText() %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower()
+# print(texto)
+if (str_detect(texto,'region')) {
+sel_region <- selector[[j]]
+}
+if (str_detect(texto,'comuna')) {
+sel_comuna <- selector[[j]]
+}
+}
+# click selector region
+sel_region$clickElement()
+# rescatar opciones
+opt_region <- sel_region$findChildElements("tag","option")
+i<-2
+# for (i in seq_len(length(opt_region))) {
+text_opt_reg <-
+opt_region[[i]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# descartar texto "seleccione"
+if (str_detect(text_opt_reg,'seleccione')) {
+cat('Boton sin region\n')
+next
+}
+# click region
+cat('Click region:', text_opt_reg, '\n')
+opt_region[[i]]$clickElement()
+# rescatar comunas
+sel_comuna$clickElement()
+opt_comunas <- sel_comuna$findChildElements('tag','option')
+j<-2
+text_comuna <-
+opt_comunas[[j]]$getElementText()[[1]] %>%
+stri_trans_general("Latin-ASCII") %>%
+str_to_lower() %>%
+str_trim()
+# saltarse texto instruccion
+if (str_detect(text_comuna,'seleccionar comuna')) {
+next
+}
+cat(text_comuna,'\n')
+# click comuna
+opt_comunas[[j]]$clickElement()
+# click buscar
+cat('click buscar\n')
+buscar$clickElement()
+c <- remDr$findElements("xpath","//div[contains(@class,'panel-body')]")
+length(c)
+c[[1]]$highlightElement()
+# titulo comuna
+h4 <- c[[1]]$findChildElements("tag","h4")
+h4[[1]]$getElementText()
+for (h in seq_len(length(h4))) {
+text_h4 <- h4[[h]]$getElementText()[[1]] %>% str_trim()
+if (text_h4 == "" ) next
+cat(text_h4)
+}
+# direccion
+dir <- c[[1]]$findChildElements("class","minirecuadro")
+length(dir)
+for (x in seq_len(length(dir))) {
+text_dir <- dir[[x]]$getElementText()[[1]] %>% str_trim()
+if (text_dir=="") next
+cat(text_dir,"\n")
+}
+# boton mapa
+btn_gm <- c[[1]]$findChildElements("class","alternar-respuesta")
+length(btn_gm)
+b<-1
+btn_gm[[1]]$highlightElement()
+text_btn <- btn_gm[[b]]$getElementText()[[1]] %>% str_trim()
+if (text_btn=="") next
+cat(text_btn,"\n")
+data_iframe <- btn_gm[[b]]$getElementAttribute("data-iframe")
+length(remDr$findElements("tag","iframe"))
+length(remDr$findElements("tag","iframe"))
+length(data_iframe)
+data_iframe %>% str_extract("(?<=!2d)-+\\d+\\.+\\d+")
+href <- btn_gm[[b]]$getElementAttribute("href")
+# click boton iframe
+btn_gm[[b]]$clickElement()
+iframe <- c[[1]]$findChildElements("tag","iframe")[[1]]
+iframe
+remDr
+remDr$switchToFrame(iframe)
+# alternativa: text "Ampliar el Mapa"
+ll <- remDr$findElements("xpath","//*[contains(@href,'?ll=')]")
+ll
+href <- ll[[1]]$getElementAttribute('href')
+href
+# volver a frame original
+remDr$switchToFrame(NULL)
+btn_gm[[1]]$highlightElement()
